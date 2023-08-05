@@ -9,6 +9,7 @@ import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.net.InetSocketAddress;
 
@@ -16,7 +17,7 @@ public class Client {
 
     public static final boolean EPOLL = Epoll.isAvailable();
 
-    Class channelClazz = EPOLL? EpollServerSocketChannel.class : NioServerSocketChannel.class;
+    Class channelClazz = EPOLL? EpollServerSocketChannel.class : NioSocketChannel.class;
 
     public Client() throws Exception {
         EventLoopGroup eventLoopGroup = EPOLL? new EpollEventLoopGroup(): new NioEventLoopGroup();
